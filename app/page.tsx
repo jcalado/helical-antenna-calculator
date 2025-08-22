@@ -49,7 +49,7 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = (e) => setDarkMode(e.matches);
+      const handleChange = (e: MediaQueryListEvent) => setDarkMode(e.matches);
       mediaQuery.addListener(handleChange);
       return () => mediaQuery.removeListener(handleChange);
     }
