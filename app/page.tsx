@@ -59,16 +59,16 @@ export default function Home() {
     document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
 
-  const calculateResults = () => {
+  const calculateResults = React.useCallback(() => {
     const results = calculateAntennaResults(inputs);
     setResults(results);
-  };
+  }, [inputs]);
 
   useEffect(() => {
     calculateResults();
-  }, [inputs]);
+  }, [inputs, calculateResults]);
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: keyof typeof inputs, value: string) => {
     setInputs(prev => ({
       ...prev,
       [field]: parseFloat(value) || 0
